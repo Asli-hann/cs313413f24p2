@@ -14,7 +14,7 @@ public class TestPerformance {
   // running time is in the tens of seconds)
   // TODO (optional) refactor to DRY
   // which of the two lists performs better as the size increases?
-  private final int SIZE = 10;
+  private final int SIZE = 10000;
 
   // TODO choose this value in such a way that you can observe an actual effect
   // for increasing problem sizes
@@ -40,35 +40,58 @@ public class TestPerformance {
     linkedList = null;
   }
 
+  //to avoid redundant duplication refactored add/remove operations
+  //with a helper method.
+  public void dryAddRemove(List<Integer> list){
+
+    for(var i=0; i<REPS; i++){
+      list.add(0,77);
+      list.remove(0);
+    }
+  }
+  //to avoid redundant duplication refactored add/remove operations
+  //with a helper method.
+  public void dryAccess(List<Integer> list){
+
+    var sum=0L;
+    for(var i=0; i<REPS; i++){
+      sum += list.get(i % SIZE);
+    }
+  }
+
   @Test
   public void testLinkedListAddRemove() {
-    for (var r = 0; r < REPS; r++) {
-      linkedList.add(0, 77);
-      linkedList.remove(0);
-    }
+//    for (var r = 0; r < REPS; r++) {
+//      linkedList.add(0, 77);
+//      linkedList.remove(0);
+//    }
+    dryAddRemove(linkedList);
   }
 
   @Test
   public void testArrayListAddRemove() {
-    for (var r = 0; r < REPS; r++) {
-      arrayList.add(0, 77);
-      arrayList.remove(0);
-    }
+//    for (var r = 0; r < REPS; r++) {
+//      arrayList.add(0, 77);
+//      arrayList.remove(0);
+//    }
+    dryAddRemove(arrayList);
   }
 
   @Test
   public void testLinkedListAccess() {
-    var sum = 0L;
-    for (var r = 0; r < REPS; r++) {
-      sum += linkedList.get(r % SIZE);
-    }
+//    var sum = 0L;
+//    for (var r = 0; r < REPS; r++) {
+//      sum += linkedList.get(r % SIZE);
+//    }
+    dryAccess(linkedList);
   }
 
   @Test
   public void testArrayListAccess() {
-    var sum = 0L;
-    for (var r = 0; r < REPS; r++) {
-      sum += arrayList.get(r % SIZE);
-    }
+//    var sum = 0L;
+//    for (var r = 0; r < REPS; r++) {
+//      sum += arrayList.get(r % SIZE);
+//    }
+    dryAccess(arrayList);
   }
 }
