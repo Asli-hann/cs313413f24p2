@@ -6,8 +6,11 @@ Added import java.lang.* to include the required language packages.
 2. setUp() Method
 The code uses an ArrayList by default, but switching to a LinkedList results
 in only minor differences.
-ArrayList is faster for random access, while LinkedList is faster for
-frequent insertions/removals in the middle of the list.
+Behaviorally there is no difference. Both ArrayList and LinkedList implement
+the List interface, so they both provide the same set of methods and should
+behave the same in terms of functionality.
+For the performance,ArrayList is faster for random access, while LinkedList is
+faster for frequent insertions/removals in the middle of the list.
 
 3. testNonempty() Method
 Updated the expected values in the assertions to correctly match the list elements.
@@ -25,8 +28,13 @@ An iterator and a while loop added to compute the mean.
 
 TestList.java
 1. setUp() Method
-ArrayList is typically faster than LinkedList for random access operations
-because it allows direct indexing. In this test case ArrayList is 1ms faster.
+Behaviorally, both ArrayList and LinkedList function similarly when it
+comes to list operations, as they both use the 'list' interface. That is why,
+operations like add(), remove(), and get() produce the same results.
+Also, switching between ArrayList and LinkedList doesn't affect the correctness
+or output of the operations.
+However, arrayList is typically faster than LinkedList for random access operations
+because it allows direct indexing.
 
 2. testSizeNonEmpty()
 Changed list.isEmpty() to return false, set the expected list size to 1,
@@ -79,7 +87,7 @@ elements it is much more efficient to use ArrayList rather than LinkedList. Howe
 if the goal is to Add/Remove elements from a list, it is better to use LinkedList.
 If the size of the list is fixed and below 100, it doesn't matter much
 which one to use, but as the size increases, it significantly affects performance.
-Therefore depending on the operation being performed, the type of the list
+Therefor depending on the operation being performed, the type of the list
 should be chosen accordingly.
 
 2. To refactor the code, two helper methods (dryAccess and dryAddRemove) were added
